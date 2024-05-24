@@ -90,3 +90,38 @@ console.log("함수1", 함수1(함수인_변수)) // hello world, goodbye world
 함수1("11111") // hello world, 11111
 함수1(함수인_변수) // hello world, goodbye world
 // 함수 1 실행 -> 내부에서 hello world 출력 -> 함수인_변수() 실행 -> goodbye world 출력
+
+const 함수인_변수2 = () => {
+    const 내부_함수 = () => {
+        return "goodbye world"
+    }
+    return 내부_함수
+}
+
+const 결과 = 함수인_변수2() // 함수인_변수2() 실행 -> 내부_함수 반환 -> 결과에 내부_함수 할당
+함수1(함수인_변수2()) // hello world, goodbye world
+
+const getSumOfTwoNumbers = (num1, num2) => {
+    return num1 + num2
+}
+
+// 좋지 않은 함수 2가지
+// 1. error 가 나지 않았다고 원하는 값이 나오는건 아님 (같은 타입으로 넣어야함!!!)
+console.log("sum : ", getSumOfTwoNumbers("문자", 2)) // sum : 문자2
+
+
+// 2. return 값이 다양한 경우에는 함수를 분리하는 것이 좋다.
+const getSumOfTwoNumbers2 = (num1, num2) => {
+    if (num1 > 10){
+        return "큰값은 안되옵니다."
+    }
+
+    return num1 + num2
+}
+console.log("sum : ", getSumOfTwoNumbers2(9, 2) * 100) // sum : 1100
+console.log("sum : ", getSumOfTwoNumbers2(111, 2) * 100) // 큰값은 안되옵니다.
+
+
+//과제
+//아무함수 10개 만들어서 
+//백엔드 밖에 fn.js 파일 만들고 연습하기
